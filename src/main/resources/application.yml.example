@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: inbox-app
+  security:
+    oauth2:
+      client:
+        registration:
+          github:
+            client-id: <github_oauth_app_client_id>
+            client-secret: <github_oauth_app_client_secret>
+  data:
+    cassandra:
+      keyspace-name: main
+      username: <datastax_astra_db_client_id>
+      password: <datastax_astra_db_client_secret>
+      schema-action: recreate-drop-unused
+      request:
+        timeout: 10s
+      connection:
+        connect-timeout: 10s
+        init-query-timeout: 10s
+
+astra.db:
+  id: <datastax_astra_db_id>
+  region: us-east1
+  keyspace: main
+  application.token: <datastax_astra_db_token>
+
+datastax.astra:
+  secure-connect-bundle: secure-connect-inbox-app.zip

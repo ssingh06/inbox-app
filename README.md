@@ -15,7 +15,7 @@ Simple Spring Boot app which allows users with a github account to send/receive 
 3. Authentication and Authorization
 
 ## Tech Stack
-* Application backend: Sprint Boot
+* Application backend: Spring Boot
 * Application frontend: Thymeleaf
 * Authentication and Authorization: Spring Security with Github authentication
 * Scalable database provider: Apache Cassandra

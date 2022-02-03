@@ -2,10 +2,11 @@ package com.example.inbox_app;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.oauth2.core.user.OAuth2User;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.boot.autoconfigure.cassandra.CqlSessionBuilderCustomizer;
+import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.nio.file.Path;
 
 @SpringBootApplication
 @RestController
@@ -15,12 +16,16 @@ public class InboxApp {
 		SpringApplication.run(InboxApp.class, args);
 	}
 
-	@RequestMapping("/user")
-	public String user(@AuthenticationPrincipal OAuth2User principal) {
-		System.out.println(principal);
-		System.out.println("principal name: " + principal.getName());
-		System.out.println("principal name attribute: " + principal.getAttribute("email"));
-		return principal.getName();
+	/**
+	 * This method is needed to return the path to the zip file contining the Java bundle needed
+	 * to connect to the hosted Astra DB instance.
+	 * @param properties "astra.db" properties injected from {@link DataStaxAstraProperties}
+	 * @return patch to Java connect bundle for Astra DB.
+	 */
+	@Bean
+	public CqlSessionBuilderCustomizer sessionBuilderCustomizer(DataStaxAstraProperties properties) {
+		final Path bundle = properties.getSecureConnectBundle().toPath();
+		return cqlSessionBuilder -> cqlSessionBuilder.withCloudSecureConnectBundle(bundle);
 	}
 
 }

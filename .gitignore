@@ -35,3 +35,6 @@ build/
 
 # Do no checkin application.yml file since it contains client secret
 src/main/resources/application.yml
+
+### Astra DB ###
+secure-connect-inbox-app.zip
