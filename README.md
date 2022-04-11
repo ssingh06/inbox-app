@@ -19,3 +19,7 @@ Simple Spring Boot app which allows users with a github account to send/receive 
 * Application frontend: Thymeleaf
 * Authentication and Authorization: Spring Security with Github authentication
 * Scalable database provider: Apache Cassandra
+
+## References
+* Spring Boot and OAuth2: https://spring.io/guides/tutorials/spring-boot-oauth2/
+* Spring Boot OAuth2 loginn simple explanation: https://medium.com/swlh/spring-boot-oauth2-login-with-github-88b178e0c004
